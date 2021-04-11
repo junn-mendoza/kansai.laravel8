@@ -76,7 +76,7 @@ class SitePageConfig extends AbstractConfig
         $this->menuFooter = $this->buildHtmlMenuFooter($this->site);
         $this->menuTopBar = $this->buildHtmlMenuTopBar($this->site);
         $this->menuHeader = $this->buildHtmlMenuHeader($this->site);               
-        $this->contents = $this->buildContentWithEncryption($this->site, $this->page);
+        $this->contents = $this->buildContentWithEncryption($this->site, $this->page, $this->oldPage);
         $this->slider = new Slider($this->site, $this->oldPage ); 
         $this->view = $this->site . '.' . $this->page; 
     }   

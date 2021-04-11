@@ -57,11 +57,11 @@ Abstract class AbstractConfig extends ApiComponents
      * @param [type] $page
      * @return void
      */
-    protected function buildContentWithEncryption($site = null, $page = null)
+    protected function buildContentWithEncryption($site = null, $page = null, $oldpage = null)
     {        
         /** @var  \App\Models\Contents[] $result*/
         $result = [];
-        $contents = $this->callApi(General::CONTENTS, [$site, $page]);
+        $contents = $this->callApi(General::CONTENTS, [$site, $page], [$site, $oldpage]);
         foreach($contents ?? [] as $content)
         {
             $salt = (($content->id * 123456789 * 5678)/956783);
