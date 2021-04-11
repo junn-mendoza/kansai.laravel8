@@ -1,7 +1,7 @@
 <?php
 namespace App\Components;
-use App\Models\PartialSiteContents;
-class Setting
+use App\Constants\General;
+class Setting extends ApiComponents
 {
     /** @var  App\Models\PartialSiteContents*/
     public $settings;
@@ -19,7 +19,7 @@ class Setting
      */
     private function getSettings($site, $page)
     {
-        $setting = PartialSiteContents::where('site',ucwords($site))->where('page',$page)->get()->first();              
+        $setting = $this->callApi(General::SETTINGS,[$site, $page]);              
         return $setting;
     }
 }

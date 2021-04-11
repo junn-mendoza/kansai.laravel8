@@ -1,7 +1,7 @@
 <?php
 namespace App\Components;
-use App\Models\Contents;
-Abstract class AbstractConfig
+use App\Constants\General;
+Abstract class AbstractConfig extends ApiComponents
 {
  /**
      * buildHtmlMenuFooter function
@@ -61,12 +61,11 @@ Abstract class AbstractConfig
     {        
         /** @var  \App\Models\Contents[] $result*/
         $result = [];
-        $contents = Contents::where('site', $site)->where('page',($page == 'landingpage'?'':$page) )->orderBy('order')->get();
+        $contents = $this->callApi(General::CONTENTS, [$site, $page]);
         foreach($contents ?? [] as $content)
         {
             $salt = (($content->id * 123456789 * 5678)/956783);
-            $content['external_id'] = base64_encode($salt);
-            $content->id;
+            $content->external_id = base64_encode($salt);
             $result[] = $content;
         }                
         return $result;

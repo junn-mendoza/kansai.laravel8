@@ -1,6 +1,6 @@
 <?php
 namespace App\Components;
-use App\Constants\Menu;
+use App\Constants\General;
 class Navigator
 {
     /**********************************************************************************
@@ -13,17 +13,16 @@ class Navigator
 	public function menuHeaderNavigation($site)
 	{	
 		$this->site = $site;   
-		$menu = new Menu();    
         $menuHeaderContents = '';
 		switch(strtolower($site)) {			
 		 	case "homeowner":			    
-			  	$menuHeaderContents = __('menu.menuHomeownerHeader');
+			  	$menuHeaderContents = __(General::MENU_OWNER_HEADER);
 		 		break;
 		 	case "corporate":			    
-                $menuHeaderContents = __('menu.menuCorporateHeader');
+                $menuHeaderContents = __(General::MENU_CORPORATE_HEADER);
 	 			break;
 		 	case "professional":			    
-         		$menuHeaderContents = __('menu.menuProfessionalHeader');	
+         		$menuHeaderContents = __(General::MENU_PROFESSIONAL_HEADER);	
 		 		break;			
 		}
 		 return $this->createMenuHeader($menuHeaderContents);
@@ -74,31 +73,13 @@ class Navigator
 		switch($site)
 		{
 			case "homeowner":
-				$site = [
-                    'kansaiway'=>'The Kansai Way',
-                    'color_inspiration'=>'Colours and Products',
-                    'trends'=>'Trends',
-                    'wallscape'=>'Wallscape',
-                    'essentials'=>'Essentials',
-                    'contact'=>'Expert Consultation'];
+				$site = __(General::MENU_OWNER_FOOTER);
 				break;
 			case "professional":
-				$site = [
-                    '360partnership'=>'360 Partnership Pledge',
-                    'coatings'=>'Coating Solutions',
-                    'downloads'=>'Download Centre',
-                    '360partnership#app_services'=>'Application Services',
-                    'neoshield'=>'Neoshield',
-                    'case_reference'=>'Case References'];
+				$site = __(General::MENU_PROFESSIONAL_FOOTER);
 				break;		
 			case "corporate":
-				$site =[
-                    'about'=>'About Kansai',
-                    'coatings'=>'Coating Services',
-                    'services'=>'Services & Solutions',
-                    'innovation'=>'Innovations',
-                    'sustainability'=>'Sustainability',
-                    'coatings#architectural'=>'Architectural Coatings'];
+				$site =__(General::MENU_CORPORATE_FOOTER);
 				break;	
 				
 			case "Test":

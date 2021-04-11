@@ -2,7 +2,7 @@
 namespace App\Components;
 use App\Models\GlobalKansai;
 use App\Constants\General;
-class Company
+class Company extends ApiComponents
 {
     public $name;    
     public $address;
@@ -15,13 +15,15 @@ class Company
         $this->setSiteCountry($countryCode);
     }
     private function setSiteCountry($countryCode)
-    {
-        $siteCountryModel = GlobalKansai::where('country_code', $countryCode)->get();
-        $this->name = $siteCountryModel[0]->company;
-        $this->address = $siteCountryModel[0]->address;
-        $this->telephone = $siteCountryModel[0]->tel;
-        $this->email1 = $siteCountryModel[0]->email1;
-        $this->email2 = $siteCountryModel[0]->email2;
+    {        
+        
+        /** @var \App\Models\GlobalKansai $company*/
+        $company = $this->callApi(General::COMPANY);
+        $this->name = $company->company;
+        $this->address = $company->address;
+        $this->telephone = $company->tel;
+        $this->email1 = $company->email1;
+        $this->email2 = $company->email2;
     }
 }
 
